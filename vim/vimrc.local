@@ -15,5 +15,8 @@ else
     "colorschem torte
 endif
 
+map <C-Tab> :bn<CR>
+map <S-C-Tab> :bp<CR>
+
 
 
