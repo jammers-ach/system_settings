@@ -15,8 +15,8 @@ else
     "colorschem torte
 endif
 
-map <C-Tab> :bn<CR>
-map <S-C-Tab> :bp<CR>
+map <A-Tab> :bn<CR>
+map <S-A-Tab> :bp<CR>
 
-
+" "colorscheme github
 
