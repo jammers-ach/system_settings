@@ -1,4 +1,4 @@
-colorscheme ir_black
+colorscheme solarized
 " Removing scrollbars
 if has("gui_running")
     set guitablabel=%-0.12t%M
@@ -11,7 +11,7 @@ if has("gui_running")
     set listchars=tab:▸\ ,eol:¬         " Invisibles using the Textmate style
 else
     set t_Co=256
-    colorschem badwolf
+    "colorschem badwolf
     "colorschem torte
 endif
 
