@@ -18,3 +18,7 @@ I use spf13 with vim, I include my vairous config
 to setup vim follow the links on 
 
 > http://vim.spf13.com/#vimrc
+
+I also use this
+
+> https://github.com/klen/python-mode#how-to-install
