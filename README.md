@@ -19,6 +19,10 @@ to setup vim follow the links on
 
 > http://vim.spf13.com/#vimrc
 
-I also use this
 
-> https://github.com/klen/python-mode#how-to-install
+
+## IPython
+
+Do this, it saves time
+
+> http://knitatoms.net/2014/01/configure-autoreload-for-ipython/
