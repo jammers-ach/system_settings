@@ -17,6 +17,7 @@ endif
 
 map <A-Tab> :bn<CR>
 map <S-A-Tab> :bp<CR>
+map I $a
 
 " "colorscheme github
 
