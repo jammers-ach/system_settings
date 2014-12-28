@@ -38,7 +38,8 @@ main = do
 	((mod4Mask,xK_f),spawn "chromium-browser")
 	, ((mod4Mask,xK_y),spawn "lxterm")
 	, ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
-        , ((0, xK_Print), spawn "scrot")
+    , ((0, xK_Print), spawn "scrot")
+    , ((mod4Mask,xK_o), spawn "sleep 1; xset dpms force off")
   ]
 
 
