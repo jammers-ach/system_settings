@@ -9,11 +9,12 @@ fi
 #Copy the old hosts file
 cp /etc/hosts /etc/hosts.old
 
+
 #now add all the sites to be blocked
 while read -r line
 do
     echo "0.0.0.0 $line #Anticrastination" >> /etc/hosts
     echo "blocked $line"
-done < sites.lst
+done < ~/.anticrastination.lst
 
 #And your done
