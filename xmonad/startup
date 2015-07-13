@@ -28,6 +28,8 @@ sleep 2s &&  system-config-printer-applet&
 pcmanfm --daemon-mode &
 ibus-daemon&
 
+~/.screenlayout/main.sh 
+
 
 
 # `gkrellm&
