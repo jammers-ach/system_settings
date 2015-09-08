@@ -1,6 +1,7 @@
 let g:airlinePowerlineFonts=1
 let g:syntasticJavascriptCheckers=['jscs']
-
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 
 
 function! JscsFix()
@@ -14,7 +15,22 @@ function! JscsFix()
 endfunction
 command JscsFix :call JscsFix()
 
+
+function! PhpLint()
+    "Save current cursor position"
+    let l:winview = winsaveview()
+    "Pipe the current buffer (%) through the jscs -x command"
+    % ! phpcbf --standard=psr2
+    "Restore cursor position - this is needed as piping the file"
+    "through jscs jumps the cursor to the top"
+    call winrestview(l:winview)
+endfunction
+command PhpLint :call PhpLint()
+
+
+
+
 function! UnderscoreToCamelCase()
-    %s/_\([a-zA-Z]\)/\u\1/g
+    %s/_\([a-zA-Z]\)/\u\1/gc
 endfunction
 command UnderscoreToCamelCase :call UnderscoreToCamelCase()

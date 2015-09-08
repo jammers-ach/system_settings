@@ -33,6 +33,7 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " jshint validation
 nnoremap <silent><F1> :JscsFix<CR>
+nnoremap <silent><F2> :PhpLint<CR>
 
 if exists('+colorcolumn')
   set colorcolumn=80
