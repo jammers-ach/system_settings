@@ -1,0 +1,71 @@
+#!/bin/bash
+# Quite often I have problems with my raspberry pi in brown outs and it 
+# corrupts the flash, so I have to re-flash it
+# this script will quickly configure it
+
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+echo "Changing passwd"
+passwd pi
+
+echo "Putting laptop's ssh key into user PI"
+su pi -c 'ssh-keygen'
+su pi -c 'echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJrWG4PZk4Peiifp5epYMJKWE1NbCyYUTjbiihUDGw3edsNFd4AwLfCReLizuOPrQ2eazfeHbEBo/kJyiWYyVWFEHL9fl9Up14G3AnEHoGAy5e2KsKv6jOMgF5xvdr2098kZc0zI07g89dmMgd7wAJ9GvaRFDX3XZqgojrAejEdui319vBEL9nDyuJudBTnx8SZDPl3Q8uN/DPljcmCq369Riiljl0a9iQwGIsyMk5tHrUFn357J7Vt2pvR98UywRMRTEjW8XC6GXmV/DbYC/sNW16e4hyM5HWO3db9ClTjSw6Xp2vDB4q8LCLDS3NloyXzzkmfQgVhGsBjnMHxWxT jammers@jlaptop" > ~/.ssh/authorized_keys'
+
+echo "Fixing locales"
+echo "ru_RU.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen 
+
+
+echo "Updating system"
+apt-get -y update
+apt-get -y upgrade
+apt-get -y dist-upgrade
+
+echo "installing vim"
+apt-get -y install vim
+
+echo "Installing nfs-server"
+apt-get purge -y rpcbind nfs-kernel-server nfs-common
+apt-get install -y nfs-kernel-server
+
+echo "Making fix for NFS server runlevel"
+cat /etc/init.d/rpcbind | sed "s/.*Default-Start.*/# Default-Start:     2 3 4 5/" > /etc/init.d/rpcbind2
+mv /etc/init.d/rpcbind2 /etc/init.d/rpcbind
+chmod +x /etc/init.d/rpcbind
+
+cat /etc/init.d/nfs-common | sed "s/.*Default-Start.*/# Default-Start:     2 3 4 5/" > /etc/init.d/nfs-common2 
+mv /etc/init.d/nfs-common2 /etc/init.d/nfs-common
+chmod +x /etc/init.d/nfs-common
+
+update-rc.d -f rpcbind remove
+update-rc.d rpcbind defaults
+
+update-rc.d -f nfs-common remove
+update-rc.d nfs-common defaults
+
+update-rc.d -f nfs-kernel-server remove
+update-rc.d nfs-kernel-server defaults
+
+
+echo "making NFS share"
+mkdir -p /srv/nfs
+mkdir -p /srv/nfs/media
+mkdir -p /srv/nfs/photos
+chown -R pi:pi /srv/nfs
+
+echo "/srv/nfs        192.168.1.0/24(rw,sync,all_squash,anonuid=1000,anongid=1000,nohide,no_subtree_check)" >> /etc/exports
+
+
+echo "Making mounting entries in fstab"
+echo "/dev/sda1   /srv/nfs/media   vfat  defaults,rw,user,utf8,auto,uid=pi,gid=pi 0 0" >> /etc/fstab
+echo "/dev/sdb1   /srv/nfs/photos   vfat  defaults,rw,user,utf8,auto,uid=pi,gid=pi 0 0" >> /etc/fstab
+
+echo "installing mplayer"
+apt-get install -y mplayer
+
+echo "Restarting the PI"
+reboot
