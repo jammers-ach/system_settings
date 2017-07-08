@@ -1,0 +1,28 @@
+#!/bin/bash
+
+mkvmerge -o /tmp/file.mkv "$1" "$2"
+
+if [ -f /tmp/file.mkv ]
+then
+    fname=$(basename "$1")
+    fname=${fname%.*} 
+    echo "Merged subs, copying to $fname.mkv"
+    mv /tmp/file.mkv "$fname.mkv"
+
+    echo "NEW FILE:"
+    du -h "$fname.mkv"
+
+    echo "OLD FILES:"
+    du -h "$1" "$2"
+
+    echo ""
+    read -p "Delete $1 and $2? " -n 1 -r
+    echo  
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        rm "$1"
+        rm "$2"
+    fi
+else
+    echo "failed ot merge subs"
+fi
