@@ -1,0 +1,52 @@
+#!/bin/bash
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+    echo "Usage submatcher NUM_EPISODES EPISODE_EXTENTION EPISODE_PREFIX SUB_EXTENTION SUB_PREFIX"
+    echo "e.g. submatcher 11 avi S05E sub 1x"
+    echo "Mass rename of subtitle files to match their respective episode title"
+    echo ""
+    echo "For every episode between 1 and NUM_EPISODE , for each file that matches *EPISODE_PREFIX,EPISODE_NUNMBER*EPISODE_EXTENTION"
+    echo "and finds a matching subtitle file that matches SUB_EXTENTION,EPISODE_NUMBER*SUB_PREFIX and renames it to match the episode filename "
+    echo "e.g. For the file 'DS9 S05e05 - Whatever.avi' it'll move Deep space nine 1x05 - whatever.en.sub' to 'DS9 S05E05 - Whatever.sub'"
+fi
+
+
+NUMEPS=${1:-11}
+
+EPISODE_EXT=${2:-mkv}
+EPISODE_PREFIX=${3:-S01E}
+
+SUB_EXT=${4:-srt}
+SUB_PREFIX=${5:-1x}
+
+for i in $(seq 1 $NUMEPS)
+do
+    i=$(printf "%02d" $i)
+    episode1="*$EPISODE_PREFIX$i*.$EPISODE_EXT"
+    episode=`ls $episode1 2> /dev/null`
+
+    if [ -z "$episode" ]
+    then
+        echo "Could'nt find episode matching $episode1"
+        continue
+    fi
+
+
+    sub1=*$SUB_PREFIX$i*.$SUB_EXT
+    sub=`ls $sub1 2> /dev/null`
+    
+    if [ -z "$sub" ]
+    then
+        echo "Could'nt find subtitle matching $sub1"
+        continue
+    fi
+
+    new_subfile=`basename "$episode" .$EPISODE_EXT`.$SUB_EXT
+    echo -n "Move \"$sub\" to \"$new_subfile\" [y/N] "
+    read -n1  response
+    echo ""
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+    then
+        mv -i "$sub" "$new_subfile" && echo "done"
+    fi
+done
