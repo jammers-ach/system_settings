@@ -18,7 +18,8 @@
 
  -- Main configuration, override the defaults to your liking.
  myConfig = defaultConfig 
-  { modMask = mod4Mask 
+  {  layoutHook = smartBorders $ layoutHook defaultConfig
+     , modMask = mod4Mask 
      , terminal = "lxterm" 
   } `additionalKeys` [ 
 	((mod4Mask,xK_f),spawn "x-www-browser")
