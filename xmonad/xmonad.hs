@@ -20,10 +20,10 @@
  myConfig = defaultConfig 
   {  layoutHook = smartBorders $ layoutHook defaultConfig
      , modMask = mod4Mask 
-     , terminal = "lxterm" 
+     , terminal = "lxterminal" 
   } `additionalKeys` [ 
 	((mod4Mask,xK_f),spawn "x-www-browser")
-	, ((mod4Mask,xK_y),spawn "lxterm")
+	, ((mod4Mask,xK_y),spawn "lxterminal")
 	, ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
     , ((0, xK_Print), spawn "scrot")
     , ((mod4Mask,xK_o), spawn "sleep 1; xset dpms force off")
