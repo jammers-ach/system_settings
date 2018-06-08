@@ -2,6 +2,7 @@
  import XMonad
  import XMonad.Hooks.DynamicLog
  import XMonad.Util.EZConfig 
+ import XMonad.Hooks.SetWMName
 
  import XMonad.Layout.NoBorders
 
@@ -21,6 +22,7 @@
   {  layoutHook = smartBorders $ layoutHook defaultConfig
      , modMask = mod4Mask 
      , terminal = "lxterminal" 
+     , startupHook = setWMName "LG3D" 
   } `additionalKeys` [ 
 	((mod4Mask,xK_f),spawn "x-www-browser")
 	, ((mod4Mask,xK_y),spawn "lxterminal")
