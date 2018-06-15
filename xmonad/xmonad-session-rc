@@ -18,7 +18,7 @@ setxkbmap -option grp:switch,grp:alt_shit_toggle -layout "us,ru"
 setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
 
 
-trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 6 --transparent true --tint 0x000000 --height 17&
+trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 6 --transparent true --tint 0x000000 --height 17 --monitor primary&
 
 xloadimage -onroot -center /usr/share/lubuntu/wallpapers/lubuntu-default-wallpaper.png &
 
