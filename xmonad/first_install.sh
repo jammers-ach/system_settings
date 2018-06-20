@@ -2,7 +2,7 @@
 
 # packages to install for first time installation
 set -x
-sudo apt instal xmonad xmobar dmenu vim-gtk trayer
+sudo apt instal xmonad xmobar dmenu vim-gtk trayer feh
 mkdir ~/.xmonad
 ln `pwd`/* ~/.xmonad/
 ln ~/.xmonad/xmobarrc ~/.xmobarrc

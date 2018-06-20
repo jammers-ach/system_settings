@@ -4,6 +4,9 @@
 #
 # Lines starting with a '#' are ignored.
 
+# Try desktop screen layout, failing that go to laptop
+desktop || laptop
+
 # Change your keymap:
 xsetroot -cursor_name left_ptr
 xmodmap "/home/jammers/.Xmodmap"
@@ -20,7 +23,14 @@ setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
 
 trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 6 --transparent true --tint 0x000000 --height 17 --monitor primary&
 
-xloadimage -onroot -center /usr/share/lubuntu/wallpapers/lubuntu-default-wallpaper.png &
+#xloadimage -onroot -center /usr/share/lubuntu/wallpapers/lubuntu-default-wallpaper.png &
+WALLPAPER=/usr/share/lubuntu/wallpapers/$USER-wallpaper.png
+if [ ! -f $WALLPAPER ]; then
+    WALLPAPER=/usr/share/lubuntu/wallpapers/lubuntu-default-wallpaper.png
+fi
+
+feh --bg-fill $WALLPAPER
+
 
 sleep 1s && nm-applet&
 sleep 1s &&  system-config-printer-applet&
@@ -32,9 +42,6 @@ sleep 1s && volumeicon&
 
 pcmanfm --daemon-mode &
 ibus-daemon&
-
-~/.screenlayout/main.sh 
-
 
 
 # `gkrellm&
