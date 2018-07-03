@@ -1,9 +1,17 @@
 #!/bin/bash
 
-wget https://www.google.com/finance?q=EURRUB -O /tmp/rate -o /tmp/rate-out
-a=`cat /tmp/rate | grep "span class=bld" | sed "s/.*d>//" | sed "s/ RUB.*//"`
 
-wget https://www.google.com/finance?q=GBPRUB -O /tmp/rate -o /tmp/rate-out
-b=`cat /tmp/rate | grep "span class=bld" | sed "s/.*d>//" | sed "s/ RUB.*//"`
+get_rate() {
+    from=$1
+    to=$2
+    url="https://www.xe.com/currencyconverter/convert/?Amount=1&From=$1&To=$2"
+    wget $url -O /tmp/rate -o /tmp/rate-out
+    a=`cat /tmp/rate | grep \"rates\": | sed "s/.*rates.*,//" | sed "s/\].*//"`
+}
 
-echo $a  $b
+get_rate EUR RUB
+b=$a
+get_rate EUR GBP
+
+printf "%.2f£ %.2f₽" "$a" "$b"
+
