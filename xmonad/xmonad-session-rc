@@ -5,23 +5,20 @@
 # Lines starting with a '#' are ignored.
 
 # Try desktop screen layout, failing that go to laptop
+laptop;
 desktop || laptop
+#laptop
 
 # Change your keymap:
 xsetroot -cursor_name left_ptr
 xmodmap "/home/jammers/.Xmodmap"
 # Applications you want to run with fluxbox.
 # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
-#
-# unclutter -idle 2 &
-# wmnd &
-# wmsmixer -w &
-# idesk &
 setxkbmap -option grp:switch,grp:alt_shit_toggle -layout "us,ru"
 setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
 
 
-trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 6 --transparent true --tint 0x000000 --height 17 --monitor primary&
+sleep 1s && trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 6 --transparent true --tint 0x000000 --height 20 --monitor primary&
 
 #xloadimage -onroot -center /usr/share/lubuntu/wallpapers/lubuntu-default-wallpaper.png &
 WALLPAPER=/usr/share/lubuntu/wallpapers/$USER-wallpaper.png
@@ -31,6 +28,7 @@ fi
 
 feh --bg-fill $WALLPAPER
 
+sleep 5s && xscreensaver -nosplash&
 
 sleep 1s && nm-applet&
 sleep 1s &&  system-config-printer-applet&
