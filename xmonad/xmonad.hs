@@ -26,8 +26,8 @@
   } `additionalKeys` [ 
 	((mod4Mask,xK_f),spawn "x-www-browser")
 	, ((mod4Mask,xK_y),spawn "lxterminal")
-	, ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
-    , ((0, xK_Print), spawn "scrot")
+	, ((controlMask, xK_Print), spawn "sleep 0.2; scrot-and-copy -s")
+    , ((0, xK_Print), spawn "scrot-and-copy")
     , ((mod4Mask,xK_o), spawn "xscreensaver-command -lock")
   ]
 
