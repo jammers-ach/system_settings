@@ -9,9 +9,11 @@ get_rate() {
     a=`cat /tmp/rate | grep \"rates\": | sed "s/.*rates.*,//" | sed "s/\].*//"`
 }
 
+get_rate EUR ZAR
+c=$a
 get_rate EUR RUB
 b=$a
 get_rate EUR GBP
 
-printf "%.2f£ %.2f₽" "$a" "$b"
+printf "%.2f£ %.2f₽ %.1fR" "$a" "$b" "$c"
 

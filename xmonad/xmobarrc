@@ -2,7 +2,7 @@ Config {
         font = "xft:Monospace:pixelsize=16:style=bold"
        , bgColor = "black"
        , fgColor = "grey"
-       , allDesktops = True
+       , allDesktops = False
        , position = TopW L 94
        , commands = [ Run Weather "ULLI" ["-t","<tempC> C","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 600
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
