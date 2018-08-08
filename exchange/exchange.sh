@@ -9,11 +9,18 @@ get_rate() {
     a=`cat /tmp/rate | grep \"rates\": | sed "s/.*rates.*,//" | sed "s/\].*//"`
 }
 
+get_euribor() {
+    url="https://www.euribor-rates.eu/euribor-rate-12-months.asp"
+    euribor=`curl -s $url | grep "Current rate (by day)" -A 7 | tail -n 1 | sed 's/%//'`
+    euribor=${euribor//$'\r'/}
+}
+
 get_rate EUR ZAR
 c=$a
 get_rate EUR RUB
 b=$a
 get_rate EUR GBP
+get_euribor
 
-printf "%.2f£ %.2f₽ %.1fR" "$a" "$b" "$c"
+printf "%.2f£ %.2f₽ %.1fR %s%%" "$a" "$b" "$c" "$euribor"
 
