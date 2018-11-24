@@ -1,0 +1,8 @@
+#!/bin/bash
+
+SRC="/run/user/1001/gvfs/mtp:host=%5Busb%3A001%2C008%5D/Internal shared storage/DCIM/"
+DEST=/home/jammers/Documents/photos_backup/
+
+echo "Copying from $SRC to $DEST"
+rsync -av --progress "$SRC" "$DEST"
+
