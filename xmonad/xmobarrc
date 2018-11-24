@@ -14,8 +14,9 @@ Config {
         		    , Run BatteryP ["BAT0"] ["-t", "Bat: <left>","-L", "10", "-H", "80", "-p", "3", "--", "-O", "<fc=green>On</fc> - ", "-o", "", "-L", "-15", "-H", "-5","-l", "red", "-m", "blue", "-h", "green"] 120
                     , Run CoreTemp ["-t", "<core0>|<core1>C","-L", "40", "-H", "60","-l", "lightblue", "-n", "gray90", "-h", "red"] 50    
                     , Run Com "/usr/local/bin/exchange" [] "rub" 3000
+                    , Run Com "/usr/local/bin/pastatus" [] "pastatus" 100
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %battery% | %cpu% | %memory% | %swap% | %coretemp% | <fc=#11ABAB>%rub%</fc> | <fc=#ee9a00>%date%</fc> | %ULLI%"
+       , template = "%StdinReader% }{ %pastatus% | %battery% | %cpu% | %memory% | %swap% | %coretemp% | <fc=#11ABAB>%rub%</fc> | <fc=#ee9a00>%date%</fc> | %ULLI%"
        }

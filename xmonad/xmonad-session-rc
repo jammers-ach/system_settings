@@ -5,8 +5,6 @@
 # Lines starting with a '#' are ignored.
 
 # Try desktop screen layout, failing that go to laptop
-laptop;
-desktop || laptop
 #laptop
 
 # Change your keymap:
@@ -50,3 +48,4 @@ exec xmonad
 # exec fluxbox -log "/home/jammers/.fluxbox/log"
 
 
+~/.screenlayout/laptop_only.sh
