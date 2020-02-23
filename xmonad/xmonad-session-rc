@@ -28,11 +28,11 @@ feh --bg-fill $WALLPAPER
 
 sleep 5s && xscreensaver -nosplash&
 
-sleep 1s && nm-applet&
-sleep 1s &&  system-config-printer-applet&
-sleep 1s && blueman-applet&
+sleep 2s && nm-applet&
+sleep 2s &&  system-config-printer-applet&
+sleep 2s && blueman-applet&
 sleep 3s && xfce4-power-manager&
-sleep 1s && volumeicon&
+sleep 2s && volumeicon&
 #sleep 2s && bluetooth-applet&
 #sleep 2s && xfce4-power-manager&
 
