@@ -12,7 +12,7 @@ xsetroot -cursor_name left_ptr
 xmodmap "/home/jammers/.Xmodmap"
 # Applications you want to run with fluxbox.
 # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
-setxkbmap -option grp:switch,grp:alt_shit_toggle -layout "us,ru"
+setxkbmap -option grp:switch,grp:alt_shift_toggle -layout "us,ru"
 setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
 
 
@@ -32,7 +32,7 @@ sleep 2s && nm-applet&
 sleep 2s &&  system-config-printer-applet&
 sleep 2s && blueman-applet&
 sleep 3s && xfce4-power-manager&
-sleep 2s && volumeicon&
+sleep 2s && pnmixer&
 #sleep 2s && bluetooth-applet&
 #sleep 2s && xfce4-power-manager&
 
