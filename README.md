@@ -2,9 +2,9 @@
 
 I use linux, I love linux.
 
-Right now I use lubuntu with xmonad. I write all my code in Vim and browse the web using google-chrome
+Right now I use debian with xmonad. I write all my code in Vim and browse the web using chromium
 
-this is a repository containing all my settings for different programs that way it’s easy to get myself setup on new machiens
+this is a repository containing all my settings for different programs that way it’s easy to get myself setup on new machines
 
 
 ## Xmonad
