@@ -1,0 +1,9 @@
+[Unit]
+After=ssh.service
+
+[Service]
+ExecStart=/home/jtm/documents/system_settings/startup/time-log-up.sh
+
+[Install]
+WantedBy=default.target
+

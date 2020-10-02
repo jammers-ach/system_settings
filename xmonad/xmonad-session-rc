@@ -4,6 +4,7 @@
 #
 # Lines starting with a '#' are ignored.
 
+/usr/local/bin/laptop
 # Try desktop screen layout, failing that go to laptop
 #laptop
 
@@ -48,4 +49,3 @@ exec xmonad
 # exec fluxbox -log "/home/jammers/.fluxbox/log"
 
 
-~/.screenlayout/laptop_only.sh

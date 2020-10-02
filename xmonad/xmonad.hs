@@ -29,5 +29,6 @@
 	, ((controlMask, xK_Print), spawn "sleep 0.2; scrot-and-copy -s")
     , ((0, xK_Print), spawn "scrot-and-copy")
     , ((mod4Mask,xK_o), spawn "xscreensaver-command -lock")
+    , ((mod4Mask,xK_0), spawn "laptop")
   ]
 

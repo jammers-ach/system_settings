@@ -1,3 +1,5 @@
 xmonad/xmonad-i386-linux
 xmonad/*.hi
 xmonad/*.o
+
+jira/
